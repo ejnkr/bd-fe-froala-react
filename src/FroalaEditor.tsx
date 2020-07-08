@@ -4,7 +4,17 @@ import React from 'react';
 import loadable from '@loadable/component';
 import equals from 'fast-deep-equal';
 
-const FroalaEditorJS: any = loadable<any>(() => import('froala-editor'), { ssr: false });
+// Require Editor CSS files.
+import 'froala-editor/css/froala_style.min.css';
+import 'froala-editor/css/froala_editor.pkgd.min.css';
+import 'froala-editor/css/themes/dark.min.css';
+
+import FroalaEditorJS from 'froala-editor';
+
+loadable.lib<any>(() => import('froala-editor/js/froala_editor.min'));
+loadable.lib<any>(() => import('froala-editor/js/plugins.pkgd.min'));
+loadable.lib<any>(() => import('froala-editor/js/froala_editor.pkgd.min'));
+loadable.lib<any>(() => import('froala-editor/js/languages/ko'));
 
 export interface FroalaProps {
   tag?: string;
@@ -178,9 +188,10 @@ class FroalaEditor extends React.Component<FroalaProps> {
     this.registerEvent('initialized', this.config.events && this.config.events.initialized);
 
     // Check if events are set.
-    if (!this.config.events) this.config.events = {};
+    if (!this.config.events) {
+      this.config.events = {};
+    }
     this.config.events.initialized = () => this.initListeners();
-
     this.editor = new FroalaEditorJS(this.element, this.config);
   }
 
