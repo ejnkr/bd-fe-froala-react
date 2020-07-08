@@ -1,6 +1,6 @@
-# bd-ui-bracket Module
+# React Froala Module
 
-To build Bracket Data and UI
+bd-fe-froala-react
 
 ## How to run
 
@@ -54,7 +54,3 @@ $ npm run lint:fix
 ## Notification
 
 - [Slack - bd-github](https://ejnkr.slack.com/archives/CS6ULQPHB)
-
-## Ref
-
-- [Google Drive Bracket Images](https://drive.google.com/drive/u/1/folders/1gt_BAHShYQanxbLRRvXrFUnst60ThIMh)
