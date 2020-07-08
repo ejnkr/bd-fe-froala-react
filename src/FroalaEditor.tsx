@@ -1,7 +1,8 @@
+import 'core-js/stable';
+
 /* eslint-disable no-continue */
 /* eslint-disable no-underscore-dangle */
 import React from 'react';
-import loadable from '@loadable/component';
 import equals from 'fast-deep-equal';
 
 // Require Editor CSS files.
@@ -9,12 +10,10 @@ import 'froala-editor/css/froala_style.min.css';
 import 'froala-editor/css/froala_editor.pkgd.min.css';
 import 'froala-editor/css/themes/dark.min.css';
 
+import 'froala-editor/js/plugins.pkgd.min';
+import 'froala-editor/js/froala_editor.pkgd.min';
+import 'froala-editor/js/languages/ko';
 import FroalaEditorJS from 'froala-editor';
-
-loadable.lib<any>(() => import('froala-editor/js/froala_editor.min'));
-loadable.lib<any>(() => import('froala-editor/js/plugins.pkgd.min'));
-loadable.lib<any>(() => import('froala-editor/js/froala_editor.pkgd.min'));
-loadable.lib<any>(() => import('froala-editor/js/languages/ko'));
 
 export interface FroalaProps {
   tag?: string;
