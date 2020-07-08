@@ -1,9 +1,10 @@
 /* eslint-disable no-continue */
 /* eslint-disable no-underscore-dangle */
 import React from 'react';
-
-import FroalaEditorJS from 'froala-editor';
+import loadable from '@loadable/component';
 import equals from 'fast-deep-equal';
+
+const FroalaEditorJS: any = loadable<any>(() => import('froala-editor'), { ssr: false });
 
 export interface FroalaProps {
   tag?: string;
