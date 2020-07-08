@@ -1,7 +1,7 @@
 {
   "license": "MIT",
   "name": "@ejnkr/bd-fe-froala-react",
-  "version": "0.0.2-alpha.1",
+  "version": "0.0.2-alpha.2",
   "description": "bd-fe-froala-react",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
