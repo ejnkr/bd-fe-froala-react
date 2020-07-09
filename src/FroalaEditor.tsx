@@ -25,6 +25,8 @@ export interface FroalaProps {
   onManualControllerReady?: (...args: any[]) => void;
 
   onModelChange?: (...args: any[]) => void;
+
+  debug?: boolean;
 }
 
 const SPECIAL_TAGS = ['img', 'button', 'input', 'a'];
@@ -49,9 +51,11 @@ class FroalaEditor extends React.Component<FroalaProps> {
 
   private _initEvents?: any[];
 
+  debug: boolean;
+
   constructor(props: FroalaProps) {
     super(props);
-    this.tag = props.tag || 'div';
+    this.tag = props.tag || 'textarea';
     this.listeningEvents = [];
     // Jquery wrapped element.
     this.element = null;
@@ -65,9 +69,17 @@ class FroalaEditor extends React.Component<FroalaProps> {
     this.editorInitialized = false;
     this.hasSpecialTag = false;
     this.oldModel = null;
+    this.debug = !!props.debug;
   }
 
   componentDidMount() {
+    // eslint-disable-next-line react/destructuring-assignment
+    if (this.props.debug) {
+      console.log('props', this.props);
+      console.log('element', this.element);
+      console.log('config', this.config);
+    }
+
     if (this.element) {
       const tagName = this.element.tagName.toLowerCase();
       if (SPECIAL_TAGS.indexOf(tagName) !== -1) {
@@ -84,6 +96,13 @@ class FroalaEditor extends React.Component<FroalaProps> {
   }
 
   componentDidUpdate() {
+    // eslint-disable-next-line react/destructuring-assignment
+    if (this.props.debug) {
+      console.log('props', this.props);
+      console.log('element', this.element);
+      console.log('config', this.config);
+    }
+
     const { model } = this.props;
     if (equals(this.oldModel, model)) {
       return;
@@ -117,8 +136,8 @@ class FroalaEditor extends React.Component<FroalaProps> {
 
   setSpecialTagContent() {
     const { model } = this.props;
-    const tags = model;
 
+    const tags = model;
     // add tags on element
     if (tags && typeof tags === 'object' && this.element) {
       // eslint-disable-next-line no-restricted-syntax
