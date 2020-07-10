@@ -65,6 +65,7 @@ class FroalaEditor extends React.Component<FroalaProps> {
     this.editor = null;
     // Editor options config
     this.config = {
+      ...props.config,
       immediateReactModelUpdate: false,
       reactIgnoreAttrs: null,
     };
