@@ -72,6 +72,11 @@ class FroalaEditor extends React.Component<FroalaProps> {
     this.hasSpecialTag = false;
     this.oldModel = null;
     this.debug = !!props.debug;
+
+    if (props.debug) {
+      console.log('Constructor');
+      console.log('props', props);
+    }
   }
 
   componentDidMount() {
