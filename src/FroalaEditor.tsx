@@ -13,7 +13,9 @@ import 'froala-editor/css/themes/dark.min.css';
 import 'froala-editor/js/plugins.pkgd.min';
 import 'froala-editor/js/froala_editor.pkgd.min';
 import 'froala-editor/js/languages/ko';
+
 import FroalaEditorJS from 'froala-editor';
+import FroalaEditorConfig from './FroalaEditorConfig';
 
 export interface FroalaProps {
   tag?: string;
@@ -75,6 +77,7 @@ class FroalaEditor extends React.Component<FroalaProps> {
   componentDidMount() {
     // eslint-disable-next-line react/destructuring-assignment
     if (this.props.debug) {
+      console.log('DidMount');
       console.log('props', this.props);
       console.log('element', this.element);
       console.log('config', this.config);
@@ -98,6 +101,7 @@ class FroalaEditor extends React.Component<FroalaProps> {
   componentDidUpdate() {
     // eslint-disable-next-line react/destructuring-assignment
     if (this.props.debug) {
+      console.log('DidUpdate');
       console.log('props', this.props);
       console.log('element', this.element);
       console.log('config', this.config);
@@ -210,7 +214,10 @@ class FroalaEditor extends React.Component<FroalaProps> {
       this.config.events = {};
     }
     this.config.events.initialized = () => this.initListeners();
-    this.editor = new FroalaEditorJS(this.element, this.config);
+    this.editor = new FroalaEditorJS(this.element, {
+      ...FroalaEditorConfig,
+      ...this.config,
+    });
   }
 
   htmlSet() {
