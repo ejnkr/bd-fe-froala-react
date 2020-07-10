@@ -65,6 +65,7 @@ class FroalaEditor extends React.Component<FroalaProps> {
     this.editor = null;
     // Editor options config
     this.config = {
+      ...props.config,
       immediateReactModelUpdate: false,
       reactIgnoreAttrs: null,
     };
@@ -83,9 +84,7 @@ class FroalaEditor extends React.Component<FroalaProps> {
     // eslint-disable-next-line react/destructuring-assignment
     if (this.props.debug) {
       console.log('DidMount');
-      console.log('props', this.props);
-      console.log('element', this.element);
-      console.log('config', this.config);
+      console.log(this);
     }
 
     if (this.element) {
@@ -106,10 +105,7 @@ class FroalaEditor extends React.Component<FroalaProps> {
   componentDidUpdate() {
     // eslint-disable-next-line react/destructuring-assignment
     if (this.props.debug) {
-      console.log('DidUpdate');
-      console.log('props', this.props);
-      console.log('element', this.element);
-      console.log('config', this.config);
+      console.log(this);
     }
 
     const { model } = this.props;
@@ -195,9 +191,6 @@ class FroalaEditor extends React.Component<FroalaProps> {
       }
       this._initEvents.push(callback);
     } else {
-      if (!this.config.events) {
-        this.config.events = {};
-      }
       this.config.events[eventName] = callback;
     }
   }
@@ -213,11 +206,6 @@ class FroalaEditor extends React.Component<FroalaProps> {
     }
     this.setContent(true);
     this.registerEvent('initialized', this.config.events && this.config.events.initialized);
-
-    // Check if events are set.
-    if (!this.config.events) {
-      this.config.events = {};
-    }
     this.config.events.initialized = () => this.initListeners();
     this.editor = new FroalaEditorJS(this.element, {
       ...this.config,
