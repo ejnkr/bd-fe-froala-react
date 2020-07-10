@@ -1,6 +1,40 @@
-# React Froala Module
+# React Froala Module (Supported SSR)
 
 bd-fe-froala-react
+
+## How to use
+
+SSR need [@loadable/component]https://github.com/gregberge/loadable-components()
+
+```js
+import loadable from '@loadable/component';
+```
+
+```js
+import 'froala-editor/css/froala_style.min.css';
+import 'froala-editor/css/froala_editor.pkgd.min.css';
+import 'froala-editor/css/themes/dark.min.css';
+import '@fortawesome/fontawesome-pro/css/all.css';
+
+const LoadableFroalaEditor = loadable(() => import('@ejnkr/bd-fe-froala-react'));
+
+// React
+export default () => {
+  // ...
+  return (
+    <div>
+      {typeof window !== 'undefined' && (
+        <LoadableFroalaEditor
+          config={config}
+          onModelChange={(newModel) => newModel}
+          model={value}
+          debug
+        />
+      )}
+    </div>
+  );
+};
+```
 
 ## How to run
 
@@ -9,14 +43,6 @@ bd-fe-froala-react
 ```bash
 $ export
 $ npm install
-```
-
-#### Dev in Local
-
-```bash
-$ npm run build
-$ cd examples
-$ npm run start
 ```
 
 #### Test
@@ -33,14 +59,21 @@ If has a tag, auto deployed into Github NPM
 
 ```bash
 $ npm run version:prod
-$ git push --tags
+$ npm run deploy
 ```
 
 - To Develop
 
 ```bash
 $ npm run version:dev
-$ git push --tags
+$ npm run deploy
+```
+
+- To Feature
+
+```bash
+$ npm run version:test
+$ npm run deploy
 ```
 
 #### Prettier & Lint
