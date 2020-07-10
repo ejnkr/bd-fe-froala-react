@@ -59,13 +59,12 @@ class FroalaEditor extends React.Component<FroalaProps> {
     super(props);
     this.tag = props.tag || 'textarea';
     this.listeningEvents = [];
-    // Jquery wrapped element.
+    // jQuery wrapped element.
     this.element = null;
     // Editor element.
     this.editor = null;
     // Editor options config
     this.config = {
-      ...props.config,
       immediateReactModelUpdate: false,
       reactIgnoreAttrs: null,
     };
@@ -216,8 +215,8 @@ class FroalaEditor extends React.Component<FroalaProps> {
     }
     this.config.events.initialized = () => this.initListeners();
     this.editor = new FroalaEditorJS(this.element, {
-      ...FroalaEditorConfig,
       ...this.config,
+      ...FroalaEditorConfig,
     });
   }
 
