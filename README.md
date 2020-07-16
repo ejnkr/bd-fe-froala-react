@@ -4,7 +4,7 @@ bd-fe-froala-react
 
 ## How to use
 
-SSR need [@loadable/component]https://github.com/gregberge/loadable-components()
+SSR need [@loadable/component](https://github.com/gregberge/loadable-components)
 
 ```js
 import loadable from '@loadable/component';
