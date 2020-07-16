@@ -41,8 +41,13 @@ export default () => {
 #### Install
 
 ```bash
-$ export
 $ npm install
+```
+
+#### Build
+
+```bash
+$ npm run build
 ```
 
 #### Test
